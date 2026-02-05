@@ -1,11 +1,11 @@
 import { test, expect } from "@playwright/test";
+import LoginPage from "./LoginPage.js";
 
 test("Search products and change condition", async ({ page }) => {
   // Login first
-  await page.goto("/");
-  await page.getByTestId("email-input").fill("admin@test.com");
-  await page.getByTestId("password-input").fill("Swordsman12@");
-  await page.getByTestId("login-button").click();
+  const loginPage = new LoginPage(page);
+  await loginPage.goto();
+  await loginPage.login("admin@test.com", "Swordsman12@");
   // Search
   await page.getByTestId("search-input").fill("Laptop");
   const products = page.getByTestId("product-card");
