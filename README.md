@@ -1,16 +1,94 @@
-# React + Vite
+# React Marketplace App (Vite + Playwright)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite web app with an authenticated products flow and Playwright end-to-end tests.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19
+- Vite 7
+- React Router DOM
+- react-google-recaptcha
+- Playwright (`@playwright/test`)
+- ESLint
 
-## React Compiler
+## App Flow
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Login page with email/password + reCAPTCHA.
+2. Products page with:
+   - searchable cricket products
+   - quantity selection
+   - add to cart / buy now actions
+   - cart sidebar with remove + checkout
+3. Checkout page with:
+   - shipping address form
+   - credit card details form
+   - order summary
+   - place-order success modal
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+src/
+  App.jsx
+  login.jsx
+  Products.jsx
+  CheckoutPage.jsx
+  ProtectedRoute.jsx
+  auth.js
+tests/
+  BasePage.js
+  LoginPage.js
+  login.spec.js
+  products.spec.js
+playwright.config.js
+```
+
+## Scripts
+
+- `npm run dev` - start Vite dev server
+- `npm run build` - production build
+- `npm run preview` - preview production build
+- `npm run lint` - run ESLint
+- `npm run test:e2e` - run Playwright tests
+- `npm run test:e2e:ui` - run Playwright UI mode
+
+## Getting Started
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start the app:
+
+```bash
+npm run dev
+```
+
+3. Open:
+
+```text
+http://localhost:5173
+```
+
+## E2E Testing (Playwright)
+
+Playwright config is in [`playwright.config.js`](./playwright.config.js):
+
+- `baseURL`: `http://localhost:5173`
+- configured browsers: Chromium, Firefox, WebKit
+- HTML reporter enabled
+- screenshots/videos on failure
+- auto-starts app using `npm run dev` via `webServer`
+
+Run tests:
+
+```bash
+npm run test:e2e
+```
+
+## Demo Login
+
+- Email: `admin@test.com`
+- Password: `Swordsman12@`
