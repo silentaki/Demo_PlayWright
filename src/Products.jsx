@@ -182,6 +182,19 @@ function Products() {
               </p>
             </>
           )}
+          <button
+            type="button"
+            className="checkout-btn"
+            data-testid="checkout-btn"
+            disabled={cartItems.length === 0}
+            onClick={() =>
+              navigate("/checkout", {
+                state: { cartItems, cartTotal },
+              })
+            }
+          >
+            Checkout
+          </button>
         </aside>
       </div>
     </div>
