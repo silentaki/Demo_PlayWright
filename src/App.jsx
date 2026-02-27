@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./login";
 import Products from "./Products";
 import ProtectedRoute from "./ProtectedRoute";
+import CheckoutPage from "./CheckoutPage";
 
 function App() {
   return (
@@ -12,6 +13,14 @@ function App() {
         element={
           <ProtectedRoute>
             <Products />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/checkout"
+        element={
+          <ProtectedRoute>
+            <CheckoutPage />
           </ProtectedRoute>
         }
       />
