@@ -1,6 +1,6 @@
 // ...existing code...
-import { test } from "@playwright/test";
-import LoginPage from "./LoginPage.js";
+import { test } from '@playwright/test';
+import LoginPage from './LoginPage.js';
 
 test('user can login (clicks reCAPTCHA before submit)', async ({ page }) => {
   const login = new LoginPage(page);

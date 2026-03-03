@@ -21,8 +21,12 @@ class BasePage {
         const clicked = await frame.evaluate(() => {
           const checkbox = document.querySelector('#recaptcha-anchor');
           if (checkbox) {
-            checkbox.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
-            checkbox.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+            checkbox.dispatchEvent(
+              new MouseEvent('mousedown', { bubbles: true })
+            );
+            checkbox.dispatchEvent(
+              new MouseEvent('mouseup', { bubbles: true })
+            );
             checkbox.dispatchEvent(new MouseEvent('click', { bubbles: true }));
             return true;
           }
@@ -33,12 +37,11 @@ class BasePage {
           await this.page.waitForTimeout(5000);
           return; // wait for the recaptcha to process
         }
-      } catch (e) {
+      } catch {
         // continue to next selector
       }
     }
   }
-  
 }
 
 export default BasePage;
