@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, devices } from "@playwright/test";
+import { defineConfig, devices } from '@playwright/test';
 
 /**
  * Read environment variables from file.
@@ -27,14 +27,14 @@ export default defineConfig({
   timeout: 30000,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    baseURL: "http://localhost:5173",
+    baseURL: 'http://localhost:5173',
     headless: false,
-    screenshot: "only-on-failure",
-    video: "retain-on-failure",
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
 
   webServer: {
-    command: "npm run dev",
+    command: 'npm run dev',
     port: 5173,
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,
@@ -84,4 +84,3 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-

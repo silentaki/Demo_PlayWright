@@ -1,58 +1,58 @@
-import { useMemo, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import "./Products.css";
+import { useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import './Products.css';
 
 const usStates = [
-  "Alabama",
-  "Alaska",
-  "Arizona",
-  "Arkansas",
-  "California",
-  "Colorado",
-  "Connecticut",
-  "Delaware",
-  "Florida",
-  "Georgia",
-  "Hawaii",
-  "Idaho",
-  "Illinois",
-  "Indiana",
-  "Iowa",
-  "Kansas",
-  "Kentucky",
-  "Louisiana",
-  "Maine",
-  "Maryland",
-  "Massachusetts",
-  "Michigan",
-  "Minnesota",
-  "Mississippi",
-  "Missouri",
-  "Montana",
-  "Nebraska",
-  "Nevada",
-  "New Hampshire",
-  "New Jersey",
-  "New Mexico",
-  "New York",
-  "North Carolina",
-  "North Dakota",
-  "Ohio",
-  "Oklahoma",
-  "Oregon",
-  "Pennsylvania",
-  "Rhode Island",
-  "South Carolina",
-  "South Dakota",
-  "Tennessee",
-  "Texas",
-  "Utah",
-  "Vermont",
-  "Virginia",
-  "Washington",
-  "West Virginia",
-  "Wisconsin",
-  "Wyoming",
+  'Alabama',
+  'Alaska',
+  'Arizona',
+  'Arkansas',
+  'California',
+  'Colorado',
+  'Connecticut',
+  'Delaware',
+  'Florida',
+  'Georgia',
+  'Hawaii',
+  'Idaho',
+  'Illinois',
+  'Indiana',
+  'Iowa',
+  'Kansas',
+  'Kentucky',
+  'Louisiana',
+  'Maine',
+  'Maryland',
+  'Massachusetts',
+  'Michigan',
+  'Minnesota',
+  'Mississippi',
+  'Missouri',
+  'Montana',
+  'Nebraska',
+  'Nevada',
+  'New Hampshire',
+  'New Jersey',
+  'New Mexico',
+  'New York',
+  'North Carolina',
+  'North Dakota',
+  'Ohio',
+  'Oklahoma',
+  'Oregon',
+  'Pennsylvania',
+  'Rhode Island',
+  'South Carolina',
+  'South Dakota',
+  'Tennessee',
+  'Texas',
+  'Utah',
+  'Vermont',
+  'Virginia',
+  'Washington',
+  'West Virginia',
+  'Wisconsin',
+  'Wyoming',
 ];
 
 function CheckoutPage() {
@@ -60,25 +60,25 @@ function CheckoutPage() {
   const location = useLocation();
   const [showOrderAlert, setShowOrderAlert] = useState(false);
   const [shippingAddress, setShippingAddress] = useState({
-    country: "United States",
-    fullName: "",
-    streetAddress: "",
-    city: "",
-    state: "",
-    zipcode: "",
+    country: 'United States',
+    fullName: '',
+    streetAddress: '',
+    city: '',
+    state: '',
+    zipcode: '',
   });
   const [cardDetails, setCardDetails] = useState({
-    nameOnCard: "",
-    cardNumber: "",
-    expiry: "",
-    cvv: "",
+    nameOnCard: '',
+    cardNumber: '',
+    expiry: '',
+    cvv: '',
   });
 
   const cartItems = location.state?.cartItems ?? [];
   const cartTotalFromState = location.state?.cartTotal;
 
   const cartTotal = useMemo(() => {
-    if (typeof cartTotalFromState === "number") {
+    if (typeof cartTotalFromState === 'number') {
       return cartTotalFromState;
     }
 
@@ -94,11 +94,8 @@ function CheckoutPage() {
   };
 
   const handleCardNumberChange = (value) => {
-    const digitsOnly = value.replace(/\D/g, "").slice(0, 16);
-    const formattedValue = digitsOnly.replace(
-      /(\d{4})(?=\d)/g,
-      "$1-"
-    );
+    const digitsOnly = value.replace(/\D/g, '').slice(0, 16);
+    const formattedValue = digitsOnly.replace(/(\d{4})(?=\d)/g, '$1-');
     setCardDetails((prev) => ({
       ...prev,
       cardNumber: formattedValue,
@@ -106,30 +103,28 @@ function CheckoutPage() {
   };
 
   return (
-    <div className="products-container" data-testid="checkout-page">
-      <div className="checkout-card checkout-layout">
-        <h2 data-testid="checkout-title">Checkout Page</h2>
-        <p data-testid="checkout-message">
+    <div className='products-container' data-testid='checkout-page'>
+      <div className='checkout-card checkout-layout'>
+        <h2 data-testid='checkout-title'>Checkout Page</h2>
+        <p data-testid='checkout-message'>
           Review your order and complete your purchase.
         </p>
 
         <form
-          className="checkout-form"
+          className='checkout-form'
           onSubmit={handlePlaceOrder}
-          data-testid="checkout-form"
+          data-testid='checkout-form'
         >
-          <div className="address-grid">
+          <div className='address-grid'>
             <div>
-              <label className="address-label">
-                Shipping Address
-              </label>
-              <div className="shipping-fields">
-                <label htmlFor="shipping-country" className="address-sublabel">
+              <label className='address-label'>Shipping Address</label>
+              <div className='shipping-fields'>
+                <label htmlFor='shipping-country' className='address-sublabel'>
                   Country
                 </label>
                 <select
-                  id="shipping-country"
-                  className="address-input"
+                  id='shipping-country'
+                  className='address-input'
                   value={shippingAddress.country}
                   onChange={(event) =>
                     setShippingAddress((prev) => ({
@@ -139,17 +134,17 @@ function CheckoutPage() {
                   }
                   required
                 >
-                  <option value="United States">United States</option>
-                  <option value="Canada">Canada</option>
+                  <option value='United States'>United States</option>
+                  <option value='Canada'>Canada</option>
                 </select>
 
-                <label htmlFor="shipping-name" className="address-sublabel">
+                <label htmlFor='shipping-name' className='address-sublabel'>
                   Full Name
                 </label>
                 <input
-                  id="shipping-name"
-                  type="text"
-                  className="address-input"
+                  id='shipping-name'
+                  type='text'
+                  className='address-input'
                   value={shippingAddress.fullName}
                   onChange={(event) =>
                     setShippingAddress((prev) => ({
@@ -157,17 +152,17 @@ function CheckoutPage() {
                       fullName: event.target.value,
                     }))
                   }
-                  placeholder="Enter full name"
+                  placeholder='Enter full name'
                   required
                 />
 
-                <label htmlFor="shipping-street" className="address-sublabel">
+                <label htmlFor='shipping-street' className='address-sublabel'>
                   Street Address
                 </label>
                 <input
-                  id="shipping-street"
-                  type="text"
-                  className="address-input"
+                  id='shipping-street'
+                  type='text'
+                  className='address-input'
                   value={shippingAddress.streetAddress}
                   onChange={(event) =>
                     setShippingAddress((prev) => ({
@@ -175,22 +170,19 @@ function CheckoutPage() {
                       streetAddress: event.target.value,
                     }))
                   }
-                  placeholder="Enter street address"
+                  placeholder='Enter street address'
                   required
                 />
 
-                <div className="shipping-location-row">
+                <div className='shipping-location-row'>
                   <div>
-                    <label
-                      htmlFor="shipping-city"
-                      className="address-sublabel"
-                    >
+                    <label htmlFor='shipping-city' className='address-sublabel'>
                       City
                     </label>
                     <input
-                      id="shipping-city"
-                      type="text"
-                      className="address-input"
+                      id='shipping-city'
+                      type='text'
+                      className='address-input'
                       value={shippingAddress.city}
                       onChange={(event) =>
                         setShippingAddress((prev) => ({
@@ -198,20 +190,20 @@ function CheckoutPage() {
                           city: event.target.value,
                         }))
                       }
-                      placeholder="City"
+                      placeholder='City'
                       required
                     />
                   </div>
                   <div>
                     <label
-                      htmlFor="shipping-state"
-                      className="address-sublabel"
+                      htmlFor='shipping-state'
+                      className='address-sublabel'
                     >
                       State
                     </label>
                     <select
-                      id="shipping-state"
-                      className="address-input"
+                      id='shipping-state'
+                      className='address-input'
                       value={shippingAddress.state}
                       onChange={(event) =>
                         setShippingAddress((prev) => ({
@@ -221,7 +213,7 @@ function CheckoutPage() {
                       }
                       required
                     >
-                      <option value="">Select state</option>
+                      <option value=''>Select state</option>
                       {usStates.map((stateName) => (
                         <option key={stateName} value={stateName}>
                           {stateName}
@@ -231,15 +223,15 @@ function CheckoutPage() {
                   </div>
                   <div>
                     <label
-                      htmlFor="shipping-zipcode"
-                      className="address-sublabel"
+                      htmlFor='shipping-zipcode'
+                      className='address-sublabel'
                     >
                       Zip Code
                     </label>
                     <input
-                      id="shipping-zipcode"
-                      type="text"
-                      className="address-input"
+                      id='shipping-zipcode'
+                      type='text'
+                      className='address-input'
                       value={shippingAddress.zipcode}
                       onChange={(event) =>
                         setShippingAddress((prev) => ({
@@ -247,7 +239,7 @@ function CheckoutPage() {
                           zipcode: event.target.value,
                         }))
                       }
-                      placeholder="Zip code"
+                      placeholder='Zip code'
                       required
                     />
                   </div>
@@ -256,17 +248,15 @@ function CheckoutPage() {
             </div>
 
             <div>
-              <label className="address-label">
-                Credit Card Details
-              </label>
-              <div className="shipping-fields">
-                <label htmlFor="card-name" className="address-sublabel">
+              <label className='address-label'>Credit Card Details</label>
+              <div className='shipping-fields'>
+                <label htmlFor='card-name' className='address-sublabel'>
                   Name On Card
                 </label>
                 <input
-                  id="card-name"
-                  type="text"
-                  className="address-input"
+                  id='card-name'
+                  type='text'
+                  className='address-input'
                   value={cardDetails.nameOnCard}
                   onChange={(event) =>
                     setCardDetails((prev) => ({
@@ -274,37 +264,37 @@ function CheckoutPage() {
                       nameOnCard: event.target.value,
                     }))
                   }
-                  placeholder="Enter name on card"
+                  placeholder='Enter name on card'
                   required
                 />
 
-                <label htmlFor="card-number" className="address-sublabel">
+                <label htmlFor='card-number' className='address-sublabel'>
                   Card Number
                 </label>
                 <input
-                  id="card-number"
-                  type="tel"
-                  className="address-input"
+                  id='card-number'
+                  type='tel'
+                  className='address-input'
                   value={cardDetails.cardNumber}
                   onChange={(event) =>
                     handleCardNumberChange(event.target.value)
                   }
-                  placeholder="1234-5678-9012-3456"
-                  inputMode="numeric"
-                  pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
+                  placeholder='1234-5678-9012-3456'
+                  inputMode='numeric'
+                  pattern='[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}'
                   maxLength={19}
                   required
                 />
 
-                <div className="payment-row">
+                <div className='payment-row'>
                   <div>
-                    <label htmlFor="card-expiry" className="address-sublabel">
+                    <label htmlFor='card-expiry' className='address-sublabel'>
                       Expiry
                     </label>
                     <input
-                      id="card-expiry"
-                      type="text"
-                      className="address-input"
+                      id='card-expiry'
+                      type='text'
+                      className='address-input'
                       value={cardDetails.expiry}
                       onChange={(event) =>
                         setCardDetails((prev) => ({
@@ -312,18 +302,18 @@ function CheckoutPage() {
                           expiry: event.target.value,
                         }))
                       }
-                      placeholder="MM/YY"
+                      placeholder='MM/YY'
                       required
                     />
                   </div>
                   <div>
-                    <label htmlFor="card-cvv" className="address-sublabel">
+                    <label htmlFor='card-cvv' className='address-sublabel'>
                       CVV
                     </label>
                     <input
-                      id="card-cvv"
-                      type="password"
-                      className="address-input"
+                      id='card-cvv'
+                      type='password'
+                      className='address-input'
                       value={cardDetails.cvv}
                       onChange={(event) =>
                         setCardDetails((prev) => ({
@@ -331,7 +321,7 @@ function CheckoutPage() {
                           cvv: event.target.value,
                         }))
                       }
-                      placeholder="123"
+                      placeholder='123'
                       required
                     />
                   </div>
@@ -340,15 +330,15 @@ function CheckoutPage() {
             </div>
           </div>
 
-          <div className="order-summary" data-testid="order-summary">
+          <div className='order-summary' data-testid='order-summary'>
             <h3>Order Summary</h3>
             {cartItems.length === 0 ? (
-              <p className="cart-empty">No items in your order.</p>
+              <p className='cart-empty'>No items in your order.</p>
             ) : (
-              <ul className="cart-list">
+              <ul className='cart-list'>
                 {cartItems.map((item) => (
-                  <li key={item.id} className="cart-item">
-                    <span className="cart-item-name">{item.name}</span>
+                  <li key={item.id} className='cart-item'>
+                    <span className='cart-item-name'>{item.name}</span>
                     <span>
                       {item.quantity} x ${item.price}
                     </span>
@@ -356,22 +346,22 @@ function CheckoutPage() {
                 ))}
               </ul>
             )}
-            <p className="cart-total">Total: ${cartTotal}</p>
+            <p className='cart-total'>Total: ${cartTotal}</p>
           </div>
 
-          <div className="checkout-actions">
+          <div className='checkout-actions'>
             <button
-              type="button"
-              className="checkout-back-btn"
-              onClick={() => navigate("/products")}
-              data-testid="back-to-products-btn"
+              type='button'
+              className='checkout-back-btn'
+              onClick={() => navigate('/products')}
+              data-testid='back-to-products-btn'
             >
               Back to Products
             </button>
             <button
-              type="submit"
-              className="place-order-btn"
-              data-testid="place-order-btn"
+              type='submit'
+              className='place-order-btn'
+              data-testid='place-order-btn'
               disabled={cartItems.length === 0}
             >
               Place Order
@@ -381,12 +371,12 @@ function CheckoutPage() {
       </div>
 
       {showOrderAlert ? (
-        <div className="order-alert-overlay" data-testid="order-alert">
-          <div className="order-alert-box">
+        <div className='order-alert-overlay' data-testid='order-alert'>
+          <div className='order-alert-box'>
             <button
-              type="button"
-              className="order-alert-close-icon"
-              aria-label="Close order alert"
+              type='button'
+              className='order-alert-close-icon'
+              aria-label='Close order alert'
               onClick={() => setShowOrderAlert(false)}
             >
               x
@@ -394,10 +384,10 @@ function CheckoutPage() {
             <h3>Order Placed</h3>
             <p>Your order has been placed successfully.</p>
             <button
-              type="button"
-              className="order-alert-close-btn"
+              type='button'
+              className='order-alert-close-btn'
               onClick={() => setShowOrderAlert(false)}
-              data-testid="order-alert-close"
+              data-testid='order-alert-close'
             >
               Close
             </button>

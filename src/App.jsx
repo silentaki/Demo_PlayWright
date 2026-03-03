@@ -1,15 +1,15 @@
-import { Routes, Route } from "react-router-dom";
-import Login from "./login";
-import Products from "./Products";
-import ProtectedRoute from "./ProtectedRoute";
-import CheckoutPage from "./CheckoutPage";
+import { Routes, Route } from 'react-router-dom';
+import Login from './login';
+import Products from './Products';
+import ProtectedRoute from './ProtectedRoute';
+import CheckoutPage from './CheckoutPage';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path='/' element={<Login />} />
       <Route
-        path="/products"
+        path='/products'
         element={
           <ProtectedRoute>
             <Products />
@@ -17,7 +17,7 @@ function App() {
         }
       />
       <Route
-        path="/checkout"
+        path='/checkout'
         element={
           <ProtectedRoute>
             <CheckoutPage />
